@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+    <main class="container">
+        <div class="row justify-content-between">
+    <div class="col-auto">
+        <h3 class="my-3"><span class="text-danger">Patient Record App</span></h3>
+    </div>
+    <div class="col-auto">
+        <a href="#" class="btn btn-sm btn-success mt-3">Add Record</a>
+    </div>
+</div>
+<!-- <h3 class="my-3">Patient Record App <a href="#" class="float-end btn btn-sm btn-success">Add Record</a></h3> -->
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Mobile No.</th>
+            <th>Details</th>
+            <th>Precautions</th>
+            <th>Visit Date</th>
+            <th>Action</th>
+        </tr>
+        {% if data %}
+            {% for patient in data %}
+            <tr>
+                <td>{{patient.id}}</td>
+                <td>{{patient.full_name}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.mobile_no}}</td>
+                <td>{{patient.detail}}</td>
+                <td>{{patient.precaution}}</td>
+                <td>{{patient.visit_date}}</td>
+                <td>
+                    <a href="#" class="btn btn-info btn-sm">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="#" class="btn btn-success btn-sm">Remind</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+</main>
+</body>
+</html>
