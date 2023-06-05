@@ -16,7 +16,15 @@ def addPatient(request):
         if saveForm.is_valid():
             saveForm.save()
             messages.success(request, 'Data has been added successfully.')
-        return render(request, 'add-patient.html', {'form': form})
-    else:
-        return render(request, 'add-patient.html', {'form': form})
+    return render(request, 'add-patient.html', {'form': form})
 
+# Update Patient
+def updatePatient(request, id):
+    patient = Patient.objects.get(id=id)
+    if request.method == 'POST':
+        saveForm = PatientForm(request.POST,instance=patient)
+        if saveForm.is_valid():
+            saveForm.save()
+            messages.success(request, 'Data has been added successfully.')
+    form=PatientForm(instance=patient)
+    return render(request, 'update-patient.html', {'form': form})
